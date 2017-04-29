@@ -1,0 +1,58 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-view4">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <div class="card">
+      <div class="circle">4</div>
+      <h1>View Four</h1>
+      <iron-ajax
+          auto
+          url="https://jsonplaceholder.typicode.com/users"
+          handle-as="json"
+          on-response="handleResponse"
+          debounce-duration="300"
+          last-response={{mostrar}}>
+      </iron-ajax>
+      <div><h2>Lista de Empleados: </h2></div>
+      <p>
+        <template is ="dom-repeat" items="{{mostrar}}">
+          <p>
+            <div>
+            <strong>Nombre:</strong> <span>{{item.name}}</span>     
+          </div>
+          <div>
+            <strong>Nombre de Usuario: </strong><span>{{item.username}}</span>
+          </div>
+          <div>
+            <strong>Correo: </strong><span>{{item.email}}</span>
+          </div>
+          <div>
+            <strong>Telefono: </strong><span>{{item.phone}}</span>
+          </div>
+          <div>
+            <strong>Sitio Web: </strong><span>{{item.website}}</span>
+          </div>
+          </p>
+        </template>
+      </p>
+    </div>
+  </template>
+
+  <script>
+    class MyView4 extends Polymer.Element {
+      static get is() { return 'my-view4'; }
+    }
+
+    window.customElements.define(MyView4.is, MyView4);
+  </script>
+</dom-module>
